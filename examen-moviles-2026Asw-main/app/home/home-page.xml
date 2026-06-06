@@ -1,0 +1,116 @@
+<Page navigatingTo="onNavigatingTo" xmlns="http://schemas.nativescript.org/tns.xsd" class="page" actionBarHidden="true">
+    <GridLayout rows="auto, *" class="screen">
+        <StackLayout rowSpan="2" class="bg-blob blob-1" horizontalAlignment="right" verticalAlignment="top" />
+        <StackLayout rowSpan="2" class="bg-blob blob-2" horizontalAlignment="left" verticalAlignment="bottom" />
+
+        <!-- CUSTOM HEADER & HERO WAVE -->
+        <StackLayout row="0" class="top-wave-container">
+            <GridLayout columns="auto, *, auto" class="custom-header">
+                <Label col="0" text="◀" class="header-btn" />
+                <StackLayout col="1" orientation="horizontal" horizontalAlignment="center" class="header-pill">
+                    <Label text="❃" class="header-logo" />
+                    <Label text="EPN Persistencia" />
+                </StackLayout>
+                <Label col="2" text="•••" class="header-btn" />
+            </GridLayout>
+
+            <StackLayout class="hero">
+                <Label text="Persistencia Dual" class="hero-title" />
+                <Label text="Relacional (SQLite) vs No Relacional (JSON File)" class="hero-subtitle" />
+                <StackLayout orientation="horizontal" class="hero-chips">
+                    <Label text="SQLite" class="chip chip-cyan" />
+                    <Label text="JSON File" class="chip chip-amber" />
+                    <Label text="Repository" class="chip chip-rose" />
+                </StackLayout>
+                <GridLayout columns="auto, auto" class="hero-meta">
+                    <Label col="0" text="FIS - EPN" class="meta-text" />
+                    <Label col="1" text="Evaluacion Practica" class="meta-text" />
+                </GridLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <!-- CONTENT SCROLLVIEW -->
+        <ScrollView row="1">
+            <StackLayout class="content">
+
+                <!-- MAIN CONTROLLER PANEL -->
+                <StackLayout class="panel panel-animate-2">
+                    
+                    <StackLayout class="panel-header">
+                        <Label text="Persistencia dual" class="panel-kicker" />
+                        <Label text="CRUD Local Conmutado" class="panel-title" />
+                        <Label text="SQLite vs JSON en tiempo real" class="panel-subtitle" />
+                    </StackLayout>
+
+                    <!-- STORAGE ACTIVE TOGGLE SWITCH CARD -->
+                    <StackLayout class="card">
+                        <Label text="🗄️ Motor de Persistencia Activo" class="card-title" />
+                        <GridLayout columns="*, auto, *" class="row-gap" verticalAlignment="middle">
+                            <Label col="0" text="JSON FILE (NoSQL)" class="label-hint" textAlignment="right" verticalAlignment="middle" marginRight="8" />
+                            <Switch col="1" class="switch-control" checked="{{ isSqlMode }}" checkedChange="{{ toggleStorageMode }}" verticalAlignment="middle" />
+                            <Label col="2" text="SQLITE (SQL)" class="label-hint" textAlignment="left" verticalAlignment="middle" marginLeft="8" />
+                        </GridLayout>
+                        <GridLayout columns="auto, *" class="row-gap">
+                            <Label col="0" text="Origen activo: " class="label-hint" verticalAlignment="middle" />
+                            <Label col="1" text="{{ storageChipText }}" class="{{ storageChipClass }}" verticalAlignment="middle" marginLeft="8" />
+                        </GridLayout>
+                        <Label text="Cada motor conserva su propio listado local de forma independiente." class="panel-subtitle" textWrap="true" />
+                    </StackLayout>
+
+                    <!-- FORM CARD: REGISTRO -->
+                    <StackLayout class="card">
+                        <Label text="📝 Registro de Nota" class="card-title" />
+                        
+                        <Label text="Título" class="label-hint" />
+                        <TextField text="{{ noteTitle }}" hint="Ej. Tarea de Móviles" class="input-field row-gap" />
+
+                        <Label text="Descripción" class="label-hint" />
+                        <TextView text="{{ noteBody }}" hint="Contenido de la nota..." class="input-field text-area row-gap" height="100" />
+
+                        <GridLayout columns="*, *" class="row-gap actions-row">
+                            <Button col="0" text="{{ saveButtonText }}" class="btn-primary" tap="{{ saveNote }}" marginRight="6" />
+                            <Button col="1" text="🧹 Limpiar" class="btn-secondary" tap="{{ clearNoteForm }}" marginLeft="6" />
+                        </GridLayout>
+                    </StackLayout>
+
+                    <ActivityIndicator busy="{{ isPersistLoading }}" class="loader" visibility="{{ isPersistLoading ? 'visible' : 'collapsed' }}" />
+
+                    <!-- LIST CARD: LISTADO (MOCKUP SEARCH HISTORY STYLE) -->
+                    <StackLayout class="card">
+                        <Label text="🗂️ Notas Registradas" class="card-title" />
+                        <ListView items="{{ notes }}" class="list-view" separatorColor="transparent">
+                            <ListView.itemTemplate>
+                                <GridLayout columns="auto, *, auto, auto" class="list-item">
+                                    <Label col="0" text="📄" class="list-icon-container" />
+                                    <StackLayout col="1" verticalAlignment="middle">
+                                        <Label text="{{ title }}" class="list-title" />
+                                        <Label text="{{ body }}" class="list-body" textWrap="true" />
+                                    </StackLayout>
+                                    <Label col="2" text="✏️" class="btn-edit" tap="{{ $parents['ListView'].editNote }}" />
+                                    <Label col="3" text="🗑️" class="btn-delete" tap="{{ $parents['ListView'].deleteNote }}" />
+                                </GridLayout>
+                            </ListView.itemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <!-- STATUS MESSAGES -->
+                    <StackLayout visibility="{{ persistMsg ? 'visible' : 'collapsed' }}" class="card card-status">
+                        <Label text="Estado de Operación" class="card-title" />
+                        <Label text="{{ persistMsg }}" class="{{ isPersistSuccess ? 'status-success' : 'status-error' }}" textWrap="true" />
+                    </StackLayout>
+
+                    <!-- LOCAL INTEGRATION TESTS -->
+                    <StackLayout class="card">
+                        <Label text="🧪 Pruebas de Integración" class="card-title" />
+                        <Button text="Ejecutar pruebas" class="btn-primary" tap="{{ runLocalTests }}" />
+                        <StackLayout visibility="{{ testResultMsg ? 'visible' : 'collapsed' }}" class="card card-status" marginTop="10">
+                            <Label text="{{ testResultMsg }}" class="{{ isTestSuccess ? 'status-success' : 'status-error' }}" textWrap="true" />
+                        </StackLayout>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>

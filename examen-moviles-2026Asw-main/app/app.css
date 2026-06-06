@@ -1,0 +1,325 @@
+@import '@nativescript/theme/css/core.css';
+@import '@nativescript/theme/css/default.css';
+
+/* =====================================================
+   EXAMEN — PERSISTENCIA DUAL MODERN LIGHT PASTEL THEME
+   Inspired by Cooper App Mockup
+   ===================================================== */
+
+Page {
+    background: linear-gradient(160deg, #F5F3FF 0%, #EDE9FE 100%);
+    color: #1E293B;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ── CUSTOM WAVE / TOP CONTAINER ── */
+.top-wave-container {
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 40;
+    border-bottom-right-radius: 40;
+    padding: 24 20 20 20;
+    margin-bottom: 8;
+}
+
+/* ── ACTION BAR (CUSTOM REPLACEMENT) ── */
+.custom-header {
+    margin-bottom: 12;
+}
+.header-btn {
+    width: 40;
+    height: 40;
+    border-radius: 20;
+    background-color: #F8FAFC;
+    color: #1E293B;
+    font-size: 18;
+    text-align: center;
+    vertical-align: middle;
+    border-width: 1;
+    border-color: #E2E8F0;
+}
+.header-pill {
+    background-color: #F1F5F9;
+    border-radius: 999;
+    padding: 6 16;
+    font-weight: 700;
+    font-size: 13;
+    color: #1E293B;
+    vertical-align: middle;
+}
+.header-logo {
+    font-size: 16;
+    margin-right: 6;
+}
+
+/* Switch control styling */
+.switch-control {
+    color: #7C3AED;
+    background-color: #E2E8F0;
+}
+
+/* ── BLOBS DECORATIVOS (SOFT PASTEL) ── */
+.bg-blob {
+    width: 250;
+    height: 250;
+    border-radius: 125;
+    opacity: 0.3;
+}
+.blob-1 { background-color: #C084FC; margin: -60 -60 0 0; }
+.blob-2 { background-color: #FEF08A; margin: 0 0 -60 -60; }
+
+/* ── HERO ── */
+.hero {
+    padding: 8 20 16 20;
+    animation-name: slideDown;
+    animation-duration: 500ms;
+    animation-fill-mode: both;
+}
+.hero-title {
+    font-size: 28;
+    font-weight: 800;
+    color: #0F172A;
+}
+.hero-subtitle {
+    font-size: 13;
+    color: #64748B;
+    margin-top: 4;
+}
+.hero-chips { margin-top: 14; }
+.hero-meta { margin-top: 10; }
+.meta-text {
+    font-size: 10;
+    text-transform: uppercase;
+    color: #64748B;
+    margin-right: 14;
+    font-weight: 700;
+}
+
+/* ── CHIPS ── */
+.chip {
+    padding: 6 12;
+    border-radius: 999;
+    font-size: 10;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 8;
+    border-width: 1;
+}
+.chip-cyan   { color: #0891B2; background-color: #ECFEFF; border-color: #CFFAFE; }
+.chip-amber  { color: #D97706; background-color: #FEF3C7; border-color: #FDE68A; }
+.chip-rose   { color: #E11D48; background-color: #FFE4E6; border-color: #FECDD3; }
+
+/* Active Storage chips */
+.chip-sql {
+    color: #0369A1;
+    background-color: #E0F2FE;
+    border-color: #BAE6FD;
+    padding: 5 12;
+    border-radius: 999;
+    font-size: 11;
+    font-weight: 700;
+    border-width: 1;
+}
+.chip-nosql {
+    color: #B45309;
+    background-color: #FEF3C7;
+    border-color: #FDE68A;
+    padding: 5 12;
+    border-radius: 999;
+    font-size: 11;
+    font-weight: 700;
+    border-width: 1;
+}
+
+.content { padding-bottom: 24; }
+
+/* ── PANEL ── */
+.panel {
+    margin: 6 18;
+    animation-name: fadeUp;
+    animation-duration: 600ms;
+    animation-fill-mode: both;
+}
+.panel-animate-1 { animation-delay: 80ms; }
+.panel-animate-2 { animation-delay: 120ms; }
+.panel-header { margin-bottom: 14; }
+
+.panel-kicker {
+    font-size: 11;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #7C3AED;
+}
+.panel-title {
+    font-size: 20;
+    font-weight: 800;
+    color: #0F172A;
+    margin-top: 4;
+}
+.panel-subtitle {
+    font-size: 13;
+    color: #64748B;
+    margin-top: 6;
+}
+
+/* ── CARDS ── */
+.card {
+    background-color: #FFFFFF;
+    border-radius: 24;
+    border-width: 1;
+    border-color: #E2E8F0;
+    padding: 18;
+    margin-bottom: 14;
+}
+.card-title {
+    font-size: 11;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #64748B;
+    margin-bottom: 12;
+}
+.card-status {
+    margin-top: 8;
+    border-radius: 20;
+    border-width: 1;
+}
+
+/* ── INPUTS ── */
+.label-hint {
+    color: #475569;
+    font-size: 12;
+    font-weight: 600;
+    margin-bottom: 6;
+}
+.row-gap { margin-bottom: 14; }
+.actions-row { margin-top: 8; }
+
+.input-field {
+    background-color: #F1F5F9;
+    border-width: 1;
+    border-color: transparent;
+    border-radius: 20;
+    padding: 12 16;
+    color: #0F172A;
+    font-size: 14;
+    placeholder-color: #94A3B8;
+}
+.text-area { padding: 14; }
+.input-field:focus {
+    border-color: #C084FC;
+    background-color: #FFFFFF;
+}
+
+/* ── BOTONES — Sólidos y Elegantes ── */
+.btn-primary {
+    background-color: #0F172A;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 14;
+    border-radius: 20;
+    padding: 14;
+    border-width: 0;
+}
+.btn-secondary {
+    background-color: #EDE9FE;
+    color: #7C3AED;
+    font-weight: 800;
+    font-size: 14;
+    border-radius: 20;
+    padding: 14;
+    border-width: 0;
+}
+
+/* Botones compactos en la lista */
+.btn-edit {
+    width: 36;
+    height: 36;
+    border-radius: 18;
+    background-color: #E0F2FE;
+    color: #0369A1;
+    font-size: 14;
+    text-align: center;
+    vertical-align: middle;
+    border-width: 0;
+    margin-right: 6;
+}
+.btn-delete {
+    width: 36;
+    height: 36;
+    border-radius: 18;
+    background-color: #FEE2E2;
+    color: #B91C1C;
+    font-size: 14;
+    text-align: center;
+    vertical-align: middle;
+    border-width: 0;
+}
+
+.loader { margin: 10 0; }
+
+/* ── LISTA (MOCKUP RECENT SEARCHES STYLE) ── */
+.list-view {
+    margin-top: 4;
+    height: 300;
+    background-color: transparent;
+}
+.list-item {
+    background-color: #FFFFFF;
+    border-radius: 20;
+    padding: 14 16;
+    margin-bottom: 10;
+    border-width: 1;
+    border-color: #F1F5F9;
+}
+.list-icon-container {
+    width: 40;
+    height: 40;
+    border-radius: 20;
+    background-color: #F5F3FF;
+    color: #7C3AED;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 18;
+    margin-right: 12;
+}
+.list-title {
+    font-size: 14;
+    font-weight: 700;
+    color: #0F172A;
+}
+.list-body {
+    font-size: 12;
+    color: #64748B;
+    margin-top: 2;
+}
+
+/* ── STATUS ── */
+.status-success {
+    background-color: #DCFCE7;
+    border-width: 1;
+    border-color: #86EFAC;
+    border-radius: 16;
+    padding: 14;
+    color: #166534;
+    font-size: 13;
+    font-weight: 600;
+}
+.status-error {
+    background-color: #FEE2E2;
+    border-width: 1;
+    border-color: #FCA5A5;
+    border-radius: 16;
+    padding: 14;
+    color: #991B1B;
+    font-size: 13;
+    font-weight: 600;
+}
+
+/* ── ANIMACIONES ── */
+@keyframes slideDown {
+    from { opacity: 0; transform: translate(0, -16); }
+    to   { opacity: 1; transform: translate(0, 0); }
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translate(0, 16); }
+    to   { opacity: 1; transform: translate(0, 0); }
+}

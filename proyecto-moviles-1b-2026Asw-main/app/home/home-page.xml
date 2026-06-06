@@ -1,0 +1,138 @@
+<Page navigatingTo="onNavigatingTo" xmlns="http://schemas.nativescript.org/tns.xsd" class="page" actionBarHidden="true">
+    <GridLayout rows="auto, *" class="screen">
+
+        <!-- CUSTOM HEADER & HERO AREA (DARK MOCKUP STYLE) -->
+        <StackLayout row="0" class="top-header-container">
+            <GridLayout columns="auto, *, auto" class="custom-header">
+                <Label col="0" text="◀" class="header-btn" tap="{{ selectRestTab }}" />
+                <Label col="1" text="INTEGRATIONS" class="header-title" />
+                <Label col="2" text="•••" class="header-btn" />
+            </GridLayout>
+
+            <StackLayout class="hero">
+                <Label text="Red y Seguridad" class="hero-title" />
+                <Label text="HTTP REST &amp; Almacenamiento Seguro" class="hero-subtitle" />
+                <StackLayout orientation="horizontal" class="hero-chips">
+                    <Label text="NestJS Backend" class="chip chip-orange" />
+                    <Label text="ngrok tunnel" class="chip chip-cyan" />
+                    <Label text="AES-256" class="chip chip-violet" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+
+        <!-- CONTENT SCROLLVIEW -->
+        <ScrollView row="1">
+            <StackLayout class="content">
+
+                <!-- TABS (PILL CONTROL) -->
+                <GridLayout columns="*, *" class="segmented">
+                    <Button col="0" text="Módulo REST" class="{{ tabRestClass }}" tap="{{ selectRestTab }}" />
+                    <Button col="1" text="Secretos" class="{{ tabSecretsClass }}" tap="{{ selectSecretsTab }}" />
+                </GridLayout>
+
+                <!-- ══════════════════════════════════════
+                     PANEL REST
+                ══════════════════════════════════════ -->
+                <StackLayout visibility="{{ activeTab === 'rest' ? 'visible' : 'collapsed' }}" class="panel panel-animate-1">
+
+                    <StackLayout class="panel-header">
+                        <Label text="Módulo 1" class="panel-kicker" />
+                        <Label text="Conectividad REST" class="panel-title" />
+                        <Label text="Consulte y edite publicaciones en el servidor NestJS." class="panel-subtitle" textWrap="true" />
+                    </StackLayout>
+
+                    <!-- GET: Buscar post (CORAL CARD) -->
+                    <StackLayout class="card card-coral">
+                        <Label text="🔍  Consultar Post (GET)" class="card-title" />
+                        <GridLayout columns="*, auto" class="row-gap">
+                            <StackLayout col="0">
+                                <Label text="ID del Post" class="label-hint" />
+                                <TextField text="{{ postId }}" hint="Ej. 1" keyboardType="number"
+                                           class="input-field input-compact" isEnabled="{{ !isLoading }}" />
+                            </StackLayout>
+                            <Button col="1" text="GET" class="btn-get" tap="{{ fetchPost }}" isEnabled="{{ !isLoading }}" verticalAlignment="bottom" />
+                        </GridLayout>
+                    </StackLayout>
+
+                    <ActivityIndicator busy="{{ isLoading }}" class="loader"
+                                       visibility="{{ isLoading ? 'visible' : 'collapsed' }}" />
+
+                    <!-- PUT: Editar (VIOLET CARD) -->
+                    <StackLayout visibility="{{ hasPost ? 'visible' : 'collapsed' }}" class="card card-violet">
+                        <Label text="✏️  Editar y Actualizar (PUT)" class="card-title" />
+                        
+                        <Label text="Título" class="label-hint" />
+                        <TextField text="{{ postTitle }}" hint="Título del post…" class="input-field row-gap" isEnabled="{{ !isLoading }}" />
+
+                        <Label text="Cuerpo" class="label-hint" />
+                        <TextView text="{{ postBody }}" hint="Contenido del post…" class="input-field text-area row-gap"
+                                  height="110" isEnabled="{{ !isLoading }}" />
+
+                        <Button text="Actualizar (PUT)" class="btn-put" tap="{{ updatePost }}" isEnabled="{{ !isLoading }}" />
+                    </StackLayout>
+
+                    <!-- Respuesta REST (DARK CARD) -->
+                    <StackLayout visibility="{{ responseMsg ? 'visible' : 'collapsed' }}" class="card card-dark card-status">
+                        <Label text="Respuesta del Servidor" class="card-title" />
+                        <Label text="{{ responseMsg }}"
+                               class="{{ isSuccessMsg ? 'status-success' : 'status-error' }}" textWrap="true" />
+                    </StackLayout>
+
+                </StackLayout>
+
+                <!-- ══════════════════════════════════════
+                     PANEL SECRETOS
+                ══════════════════════════════════════ -->
+                <StackLayout visibility="{{ activeTab === 'secrets' ? 'visible' : 'collapsed' }}" class="panel panel-animate-2">
+
+                    <StackLayout class="panel-header">
+                        <Label text="Módulo 3" class="panel-kicker" />
+                        <Label text="Almacenamiento Seguro" class="panel-title" />
+                        <Label text="Persiste llaves y valores en el compartimento nativo Android." class="panel-subtitle" textWrap="true" />
+                    </StackLayout>
+
+                    <!-- Inputs clave/valor (YELLOW CARD) -->
+                    <StackLayout class="card card-yellow">
+                        <Label text="🔑  Datos del Secreto" class="card-title" />
+                        <GridLayout columns="*, *">
+                            <StackLayout col="0" marginRight="6">
+                                <Label text="Llave (Key)" class="label-hint" />
+                                <TextField text="{{ secretKey }}" hint="api_token" class="input-field" />
+                            </StackLayout>
+                            <StackLayout col="1" marginLeft="6">
+                                <Label text="Valor (Value)" class="label-hint" />
+                                <TextField text="{{ secretValue }}" hint="eyJhbGci…" class="input-field" />
+                            </StackLayout>
+                        </GridLayout>
+                    </StackLayout>
+
+                    <!-- Selector de compartimento (SAGE CARD) -->
+                    <StackLayout class="card card-sage">
+                        <Label text="🗄️  Compartimento Nativo" class="card-title" />
+                        <GridLayout columns="*, *, *" class="pill-row">
+                            <Button col="0" text="Shared" class="{{ selectorSharedClass }}" tap="{{ selectShared }}" />
+                            <Button col="1" text="DataStore" class="{{ selectorDataStoreClass }}" tap="{{ selectDataStore }}" />
+                            <Button col="2" text="Encrypted" class="{{ selectorEncryptedClass }}" tap="{{ selectEncrypted }}" />
+                        </GridLayout>
+                        <Label text="SharedPreferences · Jetpack DataStore · EncryptedSharedPreferences (AES-256)" class="label-hint" textWrap="true" />
+                    </StackLayout>
+
+                    <!-- Botones GUARDAR / RECUPERAR -->
+                    <GridLayout columns="*, *" class="actions-row" padding="0 18">
+                        <Button col="0" text="💾 Guardar" class="btn-primary" tap="{{ saveSecret }}" marginRight="6" />
+                        <Button col="1" text="📂 Recuperar" class="btn-secondary" tap="{{ retrieveSecret }}" marginLeft="6" />
+                    </GridLayout>
+
+                    <!-- Resultado (DARK CARD) -->
+                    <StackLayout visibility="{{ secretResultMsg ? 'visible' : 'collapsed' }}" class="card card-dark card-status" marginTop="12">
+                        <Label text="Resultado del Almacenamiento" class="card-title" />
+                        <Label text="{{ secretResultMsg }}"
+                               class="{{ isSecretSuccess ? 'status-success' : 'status-error' }}" textWrap="true" />
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>
