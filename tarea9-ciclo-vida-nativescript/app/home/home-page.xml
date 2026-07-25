@@ -1,0 +1,80 @@
+<Page
+    navigatingTo="onNavigatingTo"
+    navigatedTo="onNavigatedTo"
+    xmlns="http://schemas.nativescript.org/tns.xsd">
+
+    <ActionBar title="Contador · Ciclo de vida" flat="true" />
+
+    <GridLayout rows="auto, auto, auto, *" class="root">
+
+        <!-- Fila 0: los dos contadores enfrentados -->
+        <GridLayout row="0" columns="*, *" class="tarjeta">
+            <StackLayout col="0" class="celda">
+                <Label text="PERSISTIDO" class="etiqueta" />
+                <Label text="{{ count }}" class="numero-grande" />
+                <Label text="sobrevive a la rotacion" class="pie" textWrap="true" />
+            </StackLayout>
+
+            <StackLayout col="1" class="celda celda-borde">
+                <Label text="VOLATIL" class="etiqueta etiqueta-peligro" />
+                <Label text="{{ volatil }}" class="numero-grande numero-peligro" />
+                <Label text="vive en el ViewModel" class="pie" textWrap="true" />
+            </StackLayout>
+        </GridLayout>
+
+        <!-- Fila 1: que hay en cada capa de persistencia -->
+        <GridLayout row="1" columns="*, *" class="tarjeta">
+            <StackLayout col="0" class="celda-mini">
+                <Label text="Bundle (onSaveInstanceState)" class="etiqueta-mini" textWrap="true" />
+                <Label text="{{ bundleTexto }}" class="numero-mini" />
+            </StackLayout>
+
+            <StackLayout col="1" class="celda-mini celda-borde">
+                <Label text="SharedPreferences" class="etiqueta-mini" textWrap="true" />
+                <Label text="{{ settingsTexto }}" class="numero-mini" />
+            </StackLayout>
+        </GridLayout>
+
+        <!-- Fila 2: controles -->
+        <StackLayout row="2" class="controles">
+            <Button text="+1" tap="{{ onIncrementar }}" class="boton boton-primario" />
+
+            <GridLayout columns="*, *, *" class="fila-botones">
+                <Button col="0" text="Reset" tap="{{ onReiniciar }}" class="boton boton-sec" />
+                <Button col="1" text="Marcar" tap="{{ onMarcar }}" class="boton boton-sec" />
+                <Button col="2" text="Limpiar" tap="{{ onLimpiarLog }}" class="boton boton-sec" />
+            </GridLayout>
+
+            <GridLayout columns="*, auto" class="fila-switch">
+                <Label col="0" text="{{ persistenciaTexto }}" class="texto-switch" textWrap="true"
+                    verticalAlignment="center" />
+                <Switch col="1" checked="{{ persistencia }}" checkedChange="{{ onPersistenciaChange }}"
+                    verticalAlignment="center" />
+            </GridLayout>
+        </StackLayout>
+
+        <!-- Fila 3: consola de ciclo de vida en pantalla -->
+        <GridLayout row="3" rows="auto, *" class="consola">
+            <GridLayout row="0" columns="*, auto" class="consola-cabecera">
+                <Label col="0" text="LOG DE CICLO DE VIDA" class="consola-titulo" />
+                <Button col="1" text="Volcar" tap="{{ onVolcarLog }}" class="boton-volcar" />
+            </GridLayout>
+
+            <ScrollView row="1" loaded="onLogLoaded">
+                <StackLayout>
+                    <Repeater items="{{ logEntries }}">
+                        <Repeater.itemTemplate>
+                            <GridLayout columns="auto, auto, *" class="linea">
+                                <Label col="0" text="{{ seq }}" class="linea-seq" />
+                                <Label col="1" text="{{ time }}" class="linea-hora" />
+                                <Label col="2" text="{{ text }}" color="{{ color }}"
+                                    class="linea-evento" textWrap="true" />
+                            </GridLayout>
+                        </Repeater.itemTemplate>
+                    </Repeater>
+                </StackLayout>
+            </ScrollView>
+        </GridLayout>
+
+    </GridLayout>
+</Page>

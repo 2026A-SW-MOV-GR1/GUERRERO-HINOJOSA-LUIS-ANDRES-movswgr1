@@ -1,0 +1,177 @@
+@import '@nativescript/theme/css/core.css';
+@import '@nativescript/theme/css/default.css';
+
+/*
+  Tema oscuro tipo consola: el log es el protagonista de la demo, asi que
+  todo esta pensado para que se lea bien proyectado y en horizontal.
+*/
+
+Page {
+  background-color: #0B1120;
+  color: #E2E8F0;
+}
+
+ActionBar {
+  background-color: #111C33;
+  color: #E2E8F0;
+}
+
+.root {
+  padding: 8;
+}
+
+/* ---------- Tarjetas de contadores ---------- */
+
+.tarjeta {
+  background-color: #111C33;
+  border-radius: 12;
+  margin-bottom: 8;
+}
+
+.celda,
+.celda-mini {
+  padding: 10 8;
+  horizontal-align: center;
+}
+
+.celda-borde {
+  border-left-width: 1;
+  border-left-color: #1E293B;
+}
+
+.etiqueta {
+  font-size: 11;
+  letter-spacing: 0.15;
+  color: #4ADE80;
+  text-align: center;
+}
+
+.etiqueta-peligro {
+  color: #F87171;
+}
+
+.numero-grande {
+  font-size: 46;
+  font-weight: bold;
+  color: #4ADE80;
+  text-align: center;
+  margin: 2 0;
+}
+
+.numero-peligro {
+  color: #F87171;
+}
+
+.pie {
+  font-size: 10;
+  color: #64748B;
+  text-align: center;
+}
+
+.etiqueta-mini {
+  font-size: 10;
+  color: #64748B;
+  text-align: center;
+}
+
+.numero-mini {
+  font-size: 20;
+  font-weight: bold;
+  color: #FBBF24;
+  text-align: center;
+}
+
+/* ---------- Controles ---------- */
+
+.controles {
+  margin-bottom: 8;
+}
+
+.boton {
+  border-radius: 10;
+  font-weight: bold;
+  android-elevation: 0;
+}
+
+.boton-primario {
+  background-color: #2563EB;
+  color: #FFFFFF;
+  font-size: 20;
+  height: 52;
+  margin: 0 0 6 0;
+}
+
+.fila-botones {
+  margin-bottom: 4;
+}
+
+.boton-sec {
+  background-color: #1E293B;
+  color: #CBD5E1;
+  font-size: 12;
+  height: 38;
+  margin: 0 3;
+}
+
+.fila-switch {
+  padding: 2 6;
+}
+
+.texto-switch {
+  font-size: 11;
+  color: #94A3B8;
+}
+
+/* ---------- Consola de log ---------- */
+
+.consola {
+  background-color: #060B16;
+  border-radius: 12;
+  border-width: 1;
+  border-color: #1E293B;
+  padding: 6;
+}
+
+.consola-cabecera {
+  padding: 2 4 6 4;
+}
+
+.consola-titulo {
+  font-size: 10;
+  letter-spacing: 0.2;
+  color: #475569;
+  vertical-align: center;
+}
+
+.boton-volcar {
+  background-color: transparent;
+  color: #60A5FA;
+  font-size: 10;
+  height: 26;
+  padding: 0 8;
+  margin: 0;
+  android-elevation: 0;
+}
+
+.linea {
+  padding: 1 2;
+}
+
+.linea-seq {
+  font-family: monospace;
+  font-size: 10;
+  color: #334155;
+  width: 30;
+}
+
+.linea-hora {
+  font-family: monospace;
+  font-size: 10;
+  color: #475569;
+  width: 82;
+}
+
+.linea-evento {
+  font-family: monospace;
+  font-size: 11;
+}
